@@ -1,0 +1,12 @@
+.film {
+  position: relative;
+  padding: 10px 50px 10px 10px;
+  max-width: 300px;
+}
+
+.film .rating {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}

@@ -1,0 +1,23 @@
+<button type="button" (click)="openAdd()">Add new</button>
+<app-list-item *ngFor="let film of films | async; trackBy: trackByFn" [film]="film" (rated)="onRate($event, film.id)"></app-list-item>
+
+<div class="popup" *ngIf="showAdd">
+  <div class="overlay" (click)="closePopup()"></div>
+  <div class="content">
+    <h3>Add new film</h3>
+    <form [formGroup]="newFilm">
+      <div class="form-control">
+        <input type="text" [formControlName]="'name'" placeholder="Film's name">
+        <div class="errors">
+          <p *ngIf="newFilm.controls.name.hasError('required') && !newFilm.controls.name.pristine">Name is required</p>
+        </div>
+      </div>
+      <div class="form-control">
+        <input type="text" [formControlName]="'description'" placeholder="Film's name">
+      </div>
+      <button type="button" (click)="closePopup()">Cancel</button>
+      <button type="submit" (click)="confirm()" [disabled]="newFilm.invalid">Add</button>
+    </form>
+  </div>
+</div>
+
